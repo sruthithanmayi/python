@@ -1,0 +1,9 @@
+import pandas as pd
+from pandas import read_csv
+data=pd.read_csv("/content/Day_8_banking_data.csv")
+filtered_data = data[data['Transaction_Amount'] > 2000]
+loan_payments = data[(data['Transaction_Type'] == "Loan Payment") & (data['Account_Balance'] > 5000)]
+uptown_transactions = data[data['Branch'] == "Uptown"]
+print("Filtered Data (Transaction_Amount > 2000):\n", filtered_data)
+print("\nLoan Payments (Account_Balance > 5000):\n", loan_payments)
+print("\nUptown Transactions:\n", uptown_transactions)
