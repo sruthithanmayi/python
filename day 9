@@ -1,0 +1,16 @@
+import pandas as pd
+file_path = "Day_9_banking_data.csv"
+data = pd.read_csv(file_path)
+account_type_group = data.groupby("Account_Type")
+transaction_sum_by_account = account_type_group["Transaction_Amount"].sum()
+avg_balance_by_account = account_type_group["Account_Balance"].mean()
+print("Total Transaction Amount by Account Type:")
+print(transaction_sum_by_account)
+print("\nAverage Account Balance by Account Type:")
+print(avg_balance_by_account)
+branch_group = data.groupby("Branch")
+transaction_count_by_branch = branch_group.size()
+avg_transaction_by_branch = branch_group["Transaction_Amount"].mean()
+print("\nTotal Number of Transactions by Branch:")
+print(transaction_count_by_branch)
+print("\nAverage Transaction Amount by Branch:")
