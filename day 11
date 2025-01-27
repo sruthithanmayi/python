@@ -1,0 +1,9 @@
+import pandas as pd
+data = pd.read_csv("/content/Day_11_banking_data.csv")
+df = pd.DataFrame(data)
+sorted_df = df.sort_values(by='Account_Balance', ascending=False)
+print("Top 10 rows sorted by Account_Balance:")
+print(sorted_df.head(10))
+df['Transaction_Amount_Rank'] = df.groupby('Branch')['Transaction_Amount'].rank(ascending=False, method='min')
+print("\nDataFrame with Transaction_Amount ranking within each Branch:")
+print(df)
