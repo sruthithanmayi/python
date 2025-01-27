@@ -1,0 +1,7 @@
+import pandas as pd
+# Load the newly uploaded file to adapt the analysis to the latest dataset.
+file_path_new = '/content/Day_13_Pharma_data.csv'
+data_new = pd.read_csv(file_path_new)
+
+# Inspect the structure and content of the new dataset.
+data_new.head(), data_new.info()
