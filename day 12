@@ -1,0 +1,17 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+data = pd.read_csv('/content/Day_12_banking_data.csv')
+df = pd.DataFrame(data)
+account_summary = df.groupby('Account_Type')['Transaction_Amount'].sum()
+account_summary.plot(kind='bar', color='skyblue', figsize=(8, 5))
+plt.title('Total Transaction Amount per Account Type')
+plt.xlabel('Account Type')
+plt.ylabel('Total Transaction Amount')
+plt.xticks(rotation=0)
+plt.show()
+print("\n")
+branch_summary = df['Branch'].value_counts()
+branch_summary.plot(kind='pie', autopct='%1.1f%%', figsize=(6, 6), colors=['gold', 'lightgreen', 'lightblue'])
+plt.title('Percentage of Transactions per Branch')
+plt.ylabel('')
+plt.show()
