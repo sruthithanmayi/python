@@ -1,0 +1,16 @@
+# prompt: label endoded with ranks
+
+# Sample data (replace with your actual data)
+data = {'Name': ['Alice', 'Bob', 'Charlie', 'David'],
+        'Category': ['A', 'B', 'A', 'C']}
+
+# Create a DataFrame
+df = pd.DataFrame(data)
+
+# Encode categories with ranks based on frequency
+category_counts = df['Category'].value_counts()
+rank_mapping = {category: rank for rank, category in enumerate(category_counts.index)}
+df['Category_Rank'] = df['Category'].map(rank_mapping)
+
+# Display the DataFrame
+df8
