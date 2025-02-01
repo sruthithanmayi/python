@@ -1,0 +1,39 @@
+# prompt: multi linear regression
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn import metrics
+import numpy as np
+
+# Sample data (replace with your actual data)
+data = {'feature1': [1, 2, 3, 4, 5],
+        'feature2': [2, 4, 1, 5, 3],
+        'feature3': [3, 1, 5, 2, 4],
+        'target': [5, 10, 7, 12, 9]}
+
+df = pd.DataFrame(data)
+
+# Define features (X) and target variable (y)
+X = df[['feature1', 'feature2', 'feature3']]  # Include multiple features
+y = df['target']
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+# Create and train the linear regression model
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = regressor.predict(X_test)
+
+# Evaluate the model
+print('Mean Absolute Error:', metrics.mean_absolute_error(y_test, y_pred))
+print('Mean Squared Error:', metrics.mean_squared_error(y_test, y_pred))
+print('Root Mean Squared Error:', np.sqrt(metrics.mean_squared_error(y_test, y_pred)))
+
+# Example: Predict for a new data point
+new_data_point = pd.DataFrame({'feature1': [6], 'feature2': [4], 'feature3': [2]})
+predicted_value = regressor.predict(new_data_point)
+print("Predicted value for the new data point:", predicted_value)
