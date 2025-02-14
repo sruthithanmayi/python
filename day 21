@@ -1,0 +1,12 @@
+import pandas as pd
+study_hours = [2,4,6,8,10]
+sleep_hours = [3,6,9,12,15]
+stud_name = ["sruthi","alex","rhys","zade","Aaron warner"]
+dict1 = {
+    "study_hours":study_hours,
+    "sleep_hours":sleep_hours,
+    "stud_name":stud_name
+    }
+print(dict1)
+df = pd.DataFrame(dict1)
+print(df)
