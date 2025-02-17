@@ -1,0 +1,46 @@
+# prompt: code for to define titanic more code
+
+from google.colab import files
+import pandas as pd
+import io
+
+uploaded = files.upload()
+
+file_name = list(uploaded.keys())[0]
+df = pd.read_csv(io.BytesIO(uploaded[file_name]))
+
+# Display the first few rows of the DataFrame
+print(df.head())
+
+# Data Exploration and Cleaning
+print(df.info()) # Check data types and missing values
+print(df.describe()) # Summary statistics for numerical features
+
+# Handling missing values (example: filling with mean for 'Age')
+if 'Age' in df.columns and df['Age'].isnull().any():
+    df['Age'].fillna(df['Age'].mean(), inplace=True)
+
+# Feature Engineering (example: creating 'FamilySize')
+if 'SibSp' in df.columns and 'Parch' in df.columns:
+    df['FamilySize'] = df['SibSp'] + df['Parch'] + 1
+
+# More sophisticated feature engineering based on your needs.
+# Examples:
+# - Extracting titles from names
+# - Creating age bands
+# - Encoding categorical variables
+
+# Data Visualization (examples using matplotlib and seaborn - you'll need to install them if not already)
+# !pip install matplotlib seaborn
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+if 'Survived' in df.columns and 'Pclass' in df.columns:
+    sns.countplot(x='Pclass', hue='Survived', data=df)
+    plt.show()
+
+if 'Survived' in df.columns and 'Sex' in df.columns:
+    sns.countplot(x='Sex', hue='Survived', data=df)
+    plt.show()
+
+# Further analysis and model building...
